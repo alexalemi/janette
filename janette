@@ -1,6 +1,6 @@
 #!/usr/bin/env janet
 
-(def image ".janette.jimage")
+(def image (os/getenv "JANETTE_IMAGE" ".janette.jimage"))
 
 # Load previous state or start fresh
 (def env
