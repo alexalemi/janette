@@ -21,5 +21,12 @@
     # It's not a file, treat as code
     (eval-string arg env)))
 
+(if (= (length args) 0)
+  (run-context {:env env :source :repl
+                :chunks (fn :chunks [buf p]
+                          (do (spit image (marshal env ilookup))
+                            (getline (string "repl:" ((:where p) 0) ":" (:state p :delimiters) "> ") buf env)))}))
+
+
 # Save state back
 (spit image (marshal env ilookup))
